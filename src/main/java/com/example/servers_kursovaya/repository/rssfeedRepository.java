@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+//репозиторий возвращающий страницы фида
 @Repository
 public interface rssfeedRepository extends JpaRepository<rssfeed, Long> {
     @Transactional(readOnly = true)

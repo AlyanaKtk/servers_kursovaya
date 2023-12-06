@@ -14,23 +14,24 @@ import java.util.List;
 
 @Service
 public class rssfeedService {
-    private rssfeedRepository rssfeedRepos;
+    private final rssfeedRepository rssfeedRepos;
+    //конструктор
     @Autowired
     public rssfeedService(rssfeedRepository rssfeedRepos)
     {
         this.rssfeedRepos = rssfeedRepos;
     }
-
+    //добавление фида
     public rssfeed addFeed(rssfeed feed)
     {
         return rssfeedRepos.save(feed);
     }
-
+    //добавление нескольких фидов
     public List<rssfeed> addRSSFeeds(List<rssfeed> rssFeeds) {
         return (List<rssfeed>) rssfeedRepos.saveAll(rssFeeds);
     }
 
-
+    //вызов последних фидов в виде страниц
     public Page<rssfeed> getLatestRSSFeeds(Integer page, Integer size, String sortBy, String direction) {
         String sort = getSortByValue(sortBy);
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort).descending());
@@ -39,12 +40,20 @@ public class rssfeedService {
         }
         return rssfeedRepos.findAll(pageable);
     }
-    public rssfeed updateRSSFeed(rssfeed updateRSSFeed) {
-        return rssfeedRepos.save(updateRSSFeed);
-    }
+    //возврат данных из фидов
     public Page<rssfeedDTO> getLatestRSSData(Integer page, Integer size, String sortBy, String direction) {
         return toPageObjectDto(getLatestRSSFeeds(page, size, sortBy, direction));
     }
+    //обновление фидов
+    public rssfeed updateRSSFeed(rssfeed updateRSSFeed) {
+        return rssfeedRepos.save(updateRSSFeed);
+    }
+    //конвертация в дто
+    public Page<rssfeedDTO> toPageObjectDto(Page<rssfeed> rssFeeds) {
+        return rssFeeds.map(this::convertToObjectDto);
+    }
+
+    //сохранить фид в дто
     private rssfeedDTO convertToObjectDto(rssfeed rssFeed) {
         rssfeedDTO dto = new rssfeedDTO();
         dto.setLink(rssFeed.getLink());
@@ -54,9 +63,7 @@ public class rssfeedService {
         dto.setUpdatedDate(rssFeed.getUpdatedDate());
         return dto;
     }
-    public Page<rssfeedDTO> toPageObjectDto(Page<rssfeed> rssFeeds) {
-        return rssFeeds.map(this::convertToObjectDto);
-    }
+    //сортировка
     public String getSortByValue(String sortBy) {
         switch (sortBy) {
             case "id":  return "id";

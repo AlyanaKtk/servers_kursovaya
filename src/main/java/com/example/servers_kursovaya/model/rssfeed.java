@@ -6,10 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.sql.Timestamp;
 import java.util.Objects;
 
+//новостной агрегатор
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,9 +43,8 @@ public class rssfeed extends baseModel implements Comparable<rssfeed>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         rssfeed rssFeed = (rssfeed) o;
-
+        //сравнение дат
         if (!Objects.equals(link, rssFeed.link)) return false;
         if (!Objects.equals(title, rssFeed.title)) return false;
         if (!Objects.equals(description, rssFeed.description)) return false;
