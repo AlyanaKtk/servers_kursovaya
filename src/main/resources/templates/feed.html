@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <title>This is feed!</title>
+  <style>
+    h1
+    {
+      font-size: xxx-large;
+      color: cadetblue;
+    }
+    br {
+      font-size: large;
+      font-family: "Times New Roman",serif;
+    }
+    a{
+      font-size: larger;
+    }
+  </style>
+</head>
+<body>
+<h1>Это новостной агрегатор</h1>
+<table>
+  <thead>
+  <tr>
+    <th scope="col">Link</th>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Published</th>
+    <th scope="col">Updated</th>
+  </tr>
+  <tbody>
+    <tr th:each="rssfeedDTO : ${feed.content}">
+      <th scope="row">[[${rssfeedDTO.link}]]</th>
+      <th scope="row">[[${rssfeedDTO.title}]]</th>
+      <th scope="row">[[${rssfeedDTO.description}]]</th>
+      <th scope="row">[[${rssfeedDTO.publicationDate}]]</th>
+      <th scope="row">[[${rssfeedDTO.updatedDate}]]</th>
+
+  </tbody>
+</table>
+
+</body>
+</html>
