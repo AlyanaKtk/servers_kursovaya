@@ -1,0 +1,1 @@
+INSERT INTO rssfeed(link, title, description, publication_date, updated_date) values ('https://habr.com/ru/articles/689520/', 'Свой агрегатор новостей на python', 'Создание агрегатора новостей на питоне', '2022-11-10', '2022-11-11')
