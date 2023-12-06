@@ -26,14 +26,6 @@ public class rssfeedController {
         return "index.html";
     }
 
-    @GetMapping("/items")
-    public Page<rssfeedDTO> getItems(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
-                                     @RequestParam(name = "size", required = false, defaultValue = "10") Integer size,
-                                     @RequestParam(name = "sort", required = false, defaultValue = "updated_date") String sortBy,
-                                     @RequestParam(name = "direction", required = false, defaultValue = "desc") String direction)
-    {
-        return rssfeedService.getLatestRSSData(page, size, sortBy, direction);
-    }
     @GetMapping("/feed")
     public String getFeed(Model model, @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
                                      @RequestParam(name = "size", required = false, defaultValue = "10") Integer size,
