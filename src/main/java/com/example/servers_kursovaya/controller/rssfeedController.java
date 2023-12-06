@@ -50,8 +50,6 @@ public class rssfeedController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-
-        //System.out.println(feed.getContent());
         return "feed.html";
     }
 
