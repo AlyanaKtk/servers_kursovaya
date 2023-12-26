@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -46,5 +45,20 @@ public class rssfeedController {
         }
         return "feed.html";
     }
+    //добавление новых записей
+    @PostMapping("/add")
+    public rssfeed addFeed(@RequestBody rssfeed feed)
+    {
+        return rssfeedService.addFeed(feed);
+    }
+    //удаление записей
+    @DeleteMapping("feed/delete/{id}")
+    public void deleteFeed(@PathVariable Long id)
+    {
+        rssfeedService.deleteFeed(id);
+    }
+
+
+
 
 }

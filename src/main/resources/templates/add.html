@@ -1,0 +1,19 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить в ленту</title>
+</head>
+<body>
+<form method="post" th:action="@{/rssfeed/}" th:object="${rssfeed}">
+  <input id="link" placeholder="Enter link" required type="text" th:field="*{link}"/>
+  <input id="title" placeholder="Enter title" required type="text" th:field="*{title}"/>
+  <input id="description" placeholder="Enter description" required type="text" th:field="*{description}"/>
+  <input id="publicationDate" placeholder="Enter publicationDate" required type="text" th:field="*{publicationDate}"/>
+  <input id="updatedDate" placeholder="Enter updatedDate" required type="text" th:field="*{updatedDate}"/>
+  </div>
+  <input type="submit" value="Create new article">
+</form>
+</body>
+</html>

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class rssfeedService {
@@ -47,6 +48,12 @@ public class rssfeedService {
     //обновление фидов
     public rssfeed updateRSSFeed(rssfeed updateRSSFeed) {
         return rssfeedRepos.save(updateRSSFeed);
+    }
+
+    //удаление фидов
+    public void deleteFeed(Long id)
+    {
+        rssfeedRepos.deleteById(id);
     }
     //конвертация в дто
     public Page<rssfeedDTO> toPageObjectDto(Page<rssfeed> rssFeeds) {
